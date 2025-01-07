@@ -1,0 +1,10 @@
+---
+collections:
+  - cloud.terraform
+  - openstack.cloud
+  - community.general
+  - community.docker
+  - community.mysql
+  - community.windows
+  - ansible.posix
+  - chocolatey.chocolatey
