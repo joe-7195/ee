@@ -22,7 +22,8 @@ additional_build_steps:
     RUN yum clean all
     RUN pip install --upgrade pip
     RUN pip install wheel
+    RUN pip install openstacksdk
     RUN pip install ansible-runner
-    RUN pip install ansible-inventory 
+    RUN pip install ansible-inventory
     RUN pip install ansible
-    RUN pip install pywinrm    
+    RUN pip install pywinrm
