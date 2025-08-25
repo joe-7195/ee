@@ -1,0 +1,39 @@
+---
+version: 3
+
+dependencies:
+  python: requirements.txt
+  system: bindep.txt
+  galaxy: requirements.yaml
+  python_interpreter:
+    python_path: /runner/venv/bin/python3
+
+images:
+  base_image:
+    name: docker.io/redhat/ubi9:9.6
+
+additional_build_steps:
+  # set up all prerequisites
+  prepend_base:
+    # custom python environment
+    - RUN dnf install -y python3.12-3.12.9
+    - RUN dnf install -y python3.12-pip
+    - RUN python3.12 -m venv /runner/venv
+    - ENV PATH "/runner/venv/bin:$PATH"
+
+    # required packages for ansible-builder
+    - RUN pip install --upgrade pip==25.2
+    - RUN pip install ansible-core==2.15.13
+    - RUN pip install ansible-runner==2.4.1
+
+    # download hashicorp repo for terraform
+    - RUN curl https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo -o /etc/yum.repos.d/terraform.repo
+
+  # final clean up 
+  append_final:
+    # clear package management caches
+    - RUN dnf clean all
+    - RUN pip cache purge
+
+    # label as mine
+    - LABEL org.opencontainers.image.source https://github.com/joe-7195/ee
