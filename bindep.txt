@@ -1,4 +1,4 @@
-terraform-1.12.2
+terraform-1.13.0
 packer-1.14.1
 git-2.47.3
 sudo-1.9.5p2

@@ -23,7 +23,7 @@ additional_build_steps:
 
     # required packages for ansible-builder
     - RUN pip install --upgrade pip==25.2
-    - RUN pip install ansible-core==2.15.13
+    - RUN pip install ansible-core==2.19.1
     - RUN pip install ansible-runner==2.4.1
 
     # download hashicorp repo for terraform
